@@ -1,18 +1,14 @@
 package ui;
 
 import config.EnvConfig;
-import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
-import pages.DashboardsPage;
+import pages.AllDashboardsPage;
 import pages.LoginPage;
 import webdriver.Browser;
 
-import java.util.logging.Logger;
-
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.*;
 
 public class BaseTest {
@@ -20,15 +16,21 @@ public class BaseTest {
     @BeforeClass
     public void openDashboards(){
         open(EnvConfig.DEMO_REPORT_PORTAL_URL);
-        LoginPage loginPage = page(LoginPage.class);
-        loginPage.loginButton.click();
-        DashboardsPage dashboardsPage = page(DashboardsPage.class);
-        dashboardsPage.dashboardsButton.click();
+        getLoginPage().loginButton.click();
+        getAllDashboardsPage().dashboardsButton.click();
     }
 
     @AfterClass
     public void quit(){
         Browser.closeDriver();
+    }
+
+    public LoginPage getLoginPage(){
+        return new LoginPage(Browser.getWebDriver());
+    }
+
+    public AllDashboardsPage getAllDashboardsPage(){
+        return new AllDashboardsPage(Browser.getWebDriver());
     }
 
 }

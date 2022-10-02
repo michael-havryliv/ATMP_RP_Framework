@@ -13,4 +13,5 @@ public class SampleUITests extends BaseTest{
     public void test(){
         $(".message").shouldHave(text("Hello"));
     }
+
 }

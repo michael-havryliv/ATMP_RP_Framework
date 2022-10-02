@@ -9,9 +9,9 @@ public class Browser {
     private static WebDriver webDriver;
 
     public static WebDriver getWebDriver(){
-        if(webDriver == null){
-            loadDriver();
-        }
+//        if(webDriver == null){
+//            loadDriver();
+//        }
         return webDriver;
     }
 
@@ -33,5 +33,4 @@ public class Browser {
             WebDriverRunner.setWebDriver(null);
         }
     }
-
 }
